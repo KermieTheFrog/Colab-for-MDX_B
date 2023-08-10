@@ -5,9 +5,6 @@ import json
 import shutil
 import os
 
-if not 'initialised' in globals():
-    raise NameError('Please run the first cell first!! #scrollTo=H_cTbwhVq4K6')
-
 with open('model_data.json', 'r') as f:
   model_data = json.load(f)
 
