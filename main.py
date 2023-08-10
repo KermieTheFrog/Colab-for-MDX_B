@@ -81,13 +81,15 @@ class Predictor:
                 print(f'Exporting {stems[i]}...',end=' ')
                 #if args.normalise:
                 #    sources[c] = self.normalise(sources[c])
-                sf.write(file_paths[i], sources[c].T, rate)
+                p = os.path.split(file_paths[i])
+                sf.write(os.path.join(p[0],'Reverb'), sources[c].T, rate, format='WAV')
                 print('done')
             else:
                 print(f'Exporting {stems[i]}...',end=' ')
                 #if args.normalise:
                 #    sources[i] = self.normalise(sources[i])
-                sf.write(file_paths[i], sources[i].T, rate)
+                p = os.path.split(file_paths[i])
+                sf.write(os.path.join(p[0],'Reverb'), sources[i].T, rate, format='WAV')
                 print('done')
         c = -1
         if args.invert != '':
@@ -95,14 +97,14 @@ class Predictor:
             print('-'*20)
             for i in vindex:
                 if args.model == 'off':
-                    print('Inverting and exporting {}...'.format(stems[i]), end=' ')
+                    print('Inverting and exporting Reverb')
                     p = os.path.split(file_paths[i])
-                    sf.write(os.path.join(p[0],'invert_'+p[1]), (-sources[c].T)+mix, rate)
+                    sf.write(os.path.join(p[0],'Vocals'), (-sources[c].T)+mix, rate, format='WAV')
                     print('done')
                 else:
-                    print('Inverting and exporting {}...'.format(stems[i]), end=' ')
+                    print('Inverting and exporting Reverb')
                     p = os.path.split(file_paths[i])
-                    sf.write(os.path.join(p[0],'invert_'+p[1]), (-sources[i].T)+mix, rate)
+                    sf.write(os.path.join(p[0],'Vocals'), (-sources[i].T)+mix, rate, format='WAV')
                     print('done')
         print('-'*20)
     def normalise(self, wave):
