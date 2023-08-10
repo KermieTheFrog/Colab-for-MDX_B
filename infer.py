@@ -37,7 +37,7 @@ def process_data(input_path, Denoise, Normalize, Chunks, Shifts):
   margin = 44100
   os.system(f"python main.py --n_fft {n_fft} --dim_f {dim_f} --dim_t {dim_t} --margin {margin} -i \"{track}\" --mixing {mixing_algorithm} --onnx \"{'onnx/(de)Reverb HQ By FoxJoy'}\" --model off  --shifts {round(shifts)} --stems v --invert v --chunks {chunks} --compensate {amplitude_compensation} {normalise} {denoise}")
   os.remove(track)
-  return "De reverb complete!"
+  return "Successfully completed music demixing."
 
 input_path = components.File()
 
